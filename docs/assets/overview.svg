@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="320" viewBox="0 0 1100 320" role="img" aria-labelledby="title desc">
+<title id="title">Home Credit Default Risk</title>
+<desc id="desc">Verified independent holdout AUC 0.7879; history contribution +0.0262. Three LightGBM feature variants with nested evaluation.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101d32"/><stop offset="1" stop-color="#1c3445"/></linearGradient></defs>
+<rect width="1100" height="320" rx="18" fill="url(#bg)"/>
+<rect x="36" y="32" width="5" height="66" rx="2" fill="#5eead4"/>
+<g font-family="Inter, Segoe UI, Arial, sans-serif">
+<text x="57" y="64" fill="#f8fafc" font-size="35" font-weight="700">Home Credit Default Risk</text>
+<text x="57" y="94" fill="#cbd5e1" font-size="17">Relational features · nested evaluation · independent holdout</text>
+<text x="57" y="124" fill="#94a3b8" font-size="13">8 CSV files · 58M historical rows · LightGBM same-model ablation</text>
+<g fill="#142639" stroke="#365064"><rect x="36" y="157" width="330" height="119" rx="12"/><rect x="385" y="157" width="330" height="119" rx="12"/><rect x="734" y="157" width="330" height="119" rx="12"/></g>
+<g fill="#94a3b8" font-size="11" font-weight="600" letter-spacing="1.2"><text x="57" y="181">INDEPENDENT HOLDOUT AUC</text><text x="406" y="181">ADDED HISTORY SIGNAL</text><text x="755" y="181">VERIFICATION</text></g>
+<g fill="#5eead4" font-size="36" font-weight="700"><text x="57" y="226">0.7879</text><text x="406" y="226">+0.0262</text></g>
+<text x="755" y="226" fill="#f8fafc" font-size="32" font-weight="700">58 tests passed</text>
+<g fill="#cbd5e1" font-size="12"><text x="57" y="253">95% CI [0.7818, 0.7948]</text><text x="406" y="253">over the engineered application baseline</text><text x="755" y="253">61,502 holdout applications · 3 outer folds</text></g>
+<text x="36" y="303" fill="#94a3b8" font-size="11">Measured benchmark · Seed 42 · Run 2026-11-17 · Conditional bootstrap intervals</text>
+</g></svg>

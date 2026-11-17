@@ -1,0 +1,33 @@
+# Local environments and caches
+.venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.matplotlib/
+.cache/
+*.pyc
+.DS_Store
+
+# Credentials and machine-specific configuration
+.env
+.env.*
+!.env.example
+
+# Dataset, predictions, models, split indices and heavy experiment outputs
+home-credit-default-risk/
+artifacts/
+*.csv
+*.parquet
+*.feather
+*.npy
+*.npz
+*.joblib
+*.pkl
+*.pickle
+*.sqlite
+*.sqlite-*
+*.db
+*.zip
+*.log
+*.plan.json
+*.download.json

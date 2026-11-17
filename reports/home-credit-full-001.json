@@ -1,0 +1,570 @@
+{
+  "schema_version": 1,
+  "run_id": "home-credit-full-001",
+  "run_date_utc": "2026-11-17",
+  "scope": "Home Credit Default Risk; fixed independent IID application holdout",
+  "primary_policy": "selected",
+  "selected_representation": "history",
+  "dataset": {
+    "development_rows": 246009,
+    "holdout_rows": 61502,
+    "test_rows": 48744,
+    "final_model_fit_rows": 184507,
+    "threshold_calibration_rows": 61502,
+    "known_row_counts": {
+      "application_train": 307511,
+      "application_test": 48744,
+      "bureau": 1716428,
+      "bureau_balance": 27299925,
+      "previous_application": 1670214,
+      "POS_CASH_balance": 10001358,
+      "installments_payments": 13605401,
+      "credit_card_balance": 3840312
+    },
+    "inputs": {
+      "application_train.csv": {
+        "bytes": 166133370,
+        "sha256": "52e96b895b1112e1c853f670e58372719c8441c5ed1c57ac2f7fad559d784f5f"
+      },
+      "application_test.csv": {
+        "bytes": 26567651,
+        "sha256": "a36161331d839150a67b6216d4de066f543a3b01a34061507d40e76612e0dec8"
+      },
+      "bureau.csv": {
+        "bytes": 170016717,
+        "sha256": "9d799143423f280720cf51c1bfbbab2a0422da8ff2763335bb30bf43155494f7"
+      },
+      "bureau_balance.csv": {
+        "bytes": 375592889,
+        "sha256": "33e09f06174c26f0be6b8b7398886c69e7bf0abbb29b4122f7841ffe545729a9"
+      },
+      "previous_application.csv": {
+        "bytes": 404973293,
+        "sha256": "5046cd657ee04df2eaa6dc8308ae86be6b3b1763674a3f63574886a2f2896505"
+      },
+      "POS_CASH_balance.csv": {
+        "bytes": 392703158,
+        "sha256": "0e13bc573ffa8fc29b3f00d975e557143193a405d675b0e4694b06fbdffcb0cd"
+      },
+      "installments_payments.csv": {
+        "bytes": 723118349,
+        "sha256": "428c2e2496e4d6d697ee8270e98497e5213c41be16d882eed1bc95b133726797"
+      },
+      "credit_card_balance.csv": {
+        "bytes": 424582605,
+        "sha256": "a9cdc48900d55131c90f3128b991859aeb94ca1326fb5f4d1624b9fd03782247"
+      }
+    },
+    "unmatched_bureau_balance_rows": 3120184
+  },
+  "config": {
+    "seed": 42,
+    "outer_folds": 3,
+    "inner_folds": 4,
+    "split_mode": "stratified",
+    "max_rounds": 600,
+    "patience": 50,
+    "top_k": 500,
+    "probe_rounds": 100,
+    "threads": 4,
+    "fn_cost": 10.0,
+    "fp_cost": 1.0,
+    "families": [
+      "lightgbm"
+    ],
+    "representations": [
+      "raw",
+      "application",
+      "history"
+    ],
+    "complexities": [
+      15,
+      31
+    ]
+  },
+  "environment": {
+    "python": "3.13.15",
+    "platform": "macOS-27.3-arm64-arm-64bit-Mach-O",
+    "packages": {
+      "numpy": "2.4.6",
+      "pandas": "2.3.3",
+      "scipy": "1.17.1",
+      "scikit-learn": "1.9.0",
+      "lightgbm": "4.7.0",
+      "xgboost": "3.2.0",
+      "catboost": "1.2.10"
+    }
+  },
+  "runtime_seconds": 1176.0,
+  "memory_gib": 16,
+  "verification": {
+    "tests_passed": 58,
+    "notebook_code_cells_executed": 9,
+    "holdout_metrics_recomputed_from_saved_predictions": true,
+    "model_sha256_and_metadata_verified": true,
+    "submission_original_id_order_verified": true
+  },
+  "holdout_metrics": [
+    {
+      "policy": "raw_lightgbm",
+      "representation": "raw",
+      "family": "lightgbm",
+      "threshold": 0.08911738191703157,
+      "cost": 0.5367142531950181,
+      "fn": 1821,
+      "fp": 14799,
+      "approval_rate": 0.7082533901336542,
+      "approved_default_rate": 0.041805367432677515,
+      "approve_all_cost": 0.8072908198107378,
+      "reject_all_cost": 0.9192709180189262,
+      "auc": 0.7533138927228202,
+      "ap": 0.23624624082106802,
+      "brier": 0.06814055377099269,
+      "log_loss": 0.24758225018396224,
+      "n": 61502
+    },
+    {
+      "policy": "application_lightgbm",
+      "representation": "application",
+      "family": "lightgbm",
+      "threshold": 0.09003058420703057,
+      "cost": 0.5256089232870476,
+      "fn": 1780,
+      "fp": 14526,
+      "approval_rate": 0.7120256251829209,
+      "approved_default_rate": 0.04064762165741819,
+      "approve_all_cost": 0.8072908198107378,
+      "reject_all_cost": 0.9192709180189262,
+      "auc": 0.7616512395940802,
+      "ap": 0.2465845629930727,
+      "brier": 0.06765638444674807,
+      "log_loss": 0.24518056235104477,
+      "n": 61502
+    },
+    {
+      "policy": "history_lightgbm",
+      "representation": "history",
+      "family": "lightgbm",
+      "threshold": 0.08293849669875211,
+      "cost": 0.4856752625930864,
+      "fn": 1491,
+      "fp": 14960,
+      "approval_rate": 0.7002699099216285,
+      "approved_default_rate": 0.03461967121760936,
+      "approve_all_cost": 0.8072908198107378,
+      "reject_all_cost": 0.9192709180189262,
+      "auc": 0.7878626302542903,
+      "ap": 0.2886996663935016,
+      "brier": 0.0656256483262585,
+      "log_loss": 0.23644341506926003,
+      "n": 61502
+    },
+    {
+      "policy": "selected",
+      "representation": "history",
+      "family": "lightgbm",
+      "threshold": 0.08293849669875211,
+      "cost": 0.4856752625930864,
+      "fn": 1491,
+      "fp": 14960,
+      "approval_rate": 0.7002699099216285,
+      "approved_default_rate": 0.03461967121760936,
+      "approve_all_cost": 0.8072908198107378,
+      "reject_all_cost": 0.9192709180189262,
+      "auc": 0.7878626302542903,
+      "ap": 0.2886996663935016,
+      "brier": 0.0656256483262585,
+      "log_loss": 0.23644341506926003,
+      "n": 61502
+    }
+  ],
+  "auc_intervals": [
+    {
+      "policy": "application_lightgbm",
+      "auc": 0.7616512395940802,
+      "lower_95": 0.7548332407721446,
+      "upper_95": 0.7684475764438481
+    },
+    {
+      "policy": "history_lightgbm",
+      "auc": 0.7878626302542903,
+      "lower_95": 0.7818432812163878,
+      "upper_95": 0.7947960509102391
+    },
+    {
+      "policy": "raw_lightgbm",
+      "auc": 0.7533138927228202,
+      "lower_95": 0.74647255312721,
+      "upper_95": 0.7601586436252807
+    },
+    {
+      "policy": "selected",
+      "auc": 0.7878626302542903,
+      "lower_95": 0.7818432812163878,
+      "upper_95": 0.7947960509102391
+    }
+  ],
+  "paired_auc_differences": [
+    {
+      "comparison": "history_lightgbm_minus_application_lightgbm",
+      "delta_auc": 0.026211390660210054,
+      "lower_95": 0.022616465318249797,
+      "upper_95": 0.029782458674185736
+    },
+    {
+      "comparison": "application_lightgbm_minus_raw_lightgbm",
+      "delta_auc": 0.008337346871259976,
+      "lower_95": 0.005971586556129019,
+      "upper_95": 0.010795023750900034
+    },
+    {
+      "comparison": "history_lightgbm_minus_raw_lightgbm",
+      "delta_auc": 0.03454873753147003,
+      "lower_95": 0.03028091808658094,
+      "upper_95": 0.038720718072477275
+    }
+  ],
+  "development_summary": [
+    {
+      "policy": "application_lightgbm",
+      "mean_fold_auc": 0.7616175819115806,
+      "std_fold_auc": 0.003176387389274107,
+      "mean_fold_ap": 0.24582818130463546,
+      "evaluated_rows": 246009,
+      "cost": 0.5258750696112744,
+      "approval_rate": 0.7112219471645347,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "brier": 0.06768077646773245,
+      "log_loss": 0.245295759208415
+    },
+    {
+      "policy": "history_lightgbm",
+      "mean_fold_auc": 0.7853859904063731,
+      "std_fold_auc": 0.004031521453452521,
+      "mean_fold_ap": 0.27643191559764896,
+      "evaluated_rows": 246009,
+      "cost": 0.4917299773585519,
+      "approval_rate": 0.715408785857428,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "brier": 0.066094513796467,
+      "log_loss": 0.23793273050260735
+    },
+    {
+      "policy": "raw_lightgbm",
+      "mean_fold_auc": 0.7543284045052298,
+      "std_fold_auc": 0.004482237497553206,
+      "mean_fold_ap": 0.23890657540429036,
+      "evaluated_rows": 246009,
+      "cost": 0.5358096655000427,
+      "approval_rate": 0.7235548292948631,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "brier": 0.06803380459183471,
+      "log_loss": 0.24727156190976105
+    },
+    {
+      "policy": "selected",
+      "mean_fold_auc": 0.7853859904063731,
+      "std_fold_auc": 0.004031521453452521,
+      "mean_fold_ap": 0.27643191559764896,
+      "evaluated_rows": 246009,
+      "cost": 0.4917299773585519,
+      "approval_rate": 0.715408785857428,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "brier": 0.066094513796467,
+      "log_loss": 0.23793273050260735
+    }
+  ],
+  "development_folds": [
+    {
+      "fold": 1,
+      "policy": "raw_lightgbm",
+      "family": "lightgbm",
+      "representation": "raw",
+      "threshold": 0.08835251675943578,
+      "cost": 0.538102264551297,
+      "fn": 2416,
+      "fp": 19966,
+      "approval_rate": 0.7052546858041779,
+      "approved_default_rate": 0.04177545691906005,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "auc": 0.7520406806362017,
+      "ap": 0.23427804237585054,
+      "brier": 0.06822465700391513,
+      "log_loss": 0.24809011306409168,
+      "n": 82003
+    },
+    {
+      "fold": 1,
+      "policy": "application_lightgbm",
+      "family": "lightgbm",
+      "representation": "application",
+      "threshold": 0.08613386973029041,
+      "cost": 0.5295903808397254,
+      "fn": 2299,
+      "fp": 20438,
+      "approval_rate": 0.6980720217553016,
+      "approved_default_rate": 0.04016141429669485,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "auc": 0.7588218700931593,
+      "ap": 0.24305506732737753,
+      "brier": 0.06784434706735301,
+      "log_loss": 0.24610578244882803,
+      "n": 82003
+    },
+    {
+      "fold": 1,
+      "policy": "history_lightgbm",
+      "family": "lightgbm",
+      "representation": "history",
+      "threshold": 0.08258589411953099,
+      "cost": 0.4970062070899845,
+      "fn": 2087,
+      "fp": 19886,
+      "approval_rate": 0.7022182115288466,
+      "approved_default_rate": 0.03624270630730759,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "auc": 0.7822278040121639,
+      "ap": 0.27677841940763426,
+      "brier": 0.06622587745323494,
+      "log_loss": 0.23883177441338874,
+      "n": 82003
+    },
+    {
+      "fold": 1,
+      "policy": "selected",
+      "family": "lightgbm",
+      "representation": "history",
+      "threshold": 0.08258589411953099,
+      "cost": 0.4970062070899845,
+      "fn": 2087,
+      "fp": 19886,
+      "approval_rate": 0.7022182115288466,
+      "approved_default_rate": 0.03624270630730759,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "auc": 0.7822278040121639,
+      "ap": 0.27677841940763426,
+      "brier": 0.06622587745323494,
+      "log_loss": 0.23883177441338874,
+      "n": 82003
+    },
+    {
+      "fold": 2,
+      "policy": "raw_lightgbm",
+      "family": "lightgbm",
+      "representation": "raw",
+      "threshold": 0.08916568795965779,
+      "cost": 0.5281636037705938,
+      "fn": 2377,
+      "fp": 19541,
+      "approval_rate": 0.7099618306647317,
+      "approved_default_rate": 0.040828595475703805,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "auc": 0.7594928624911745,
+      "ap": 0.24134693695881923,
+      "brier": 0.06786383988265014,
+      "log_loss": 0.24610644304159635,
+      "n": 82003
+    },
+    {
+      "fold": 2,
+      "policy": "application_lightgbm",
+      "family": "lightgbm",
+      "representation": "application",
+      "threshold": 0.09959427449035037,
+      "cost": 0.5191883223784496,
+      "fn": 2555,
+      "fp": 17025,
+      "approval_rate": 0.7428142872821726,
+      "approved_default_rate": 0.04194506919705153,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "auc": 0.7650715101487978,
+      "ap": 0.24725499933532444,
+      "brier": 0.06754202691499406,
+      "log_loss": 0.24447124461260694,
+      "n": 82003
+    },
+    {
+      "fold": 2,
+      "policy": "history_lightgbm",
+      "family": "lightgbm",
+      "representation": "history",
+      "threshold": 0.08785209819630675,
+      "cost": 0.48427496555004085,
+      "fn": 2079,
+      "fp": 18922,
+      "approval_rate": 0.7138763215979903,
+      "approved_default_rate": 0.03551417833959686,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "auc": 0.7899269342503237,
+      "ap": 0.2784393214601884,
+      "brier": 0.0658533579081956,
+      "log_loss": 0.23667900876841502,
+      "n": 82003
+    },
+    {
+      "fold": 2,
+      "policy": "selected",
+      "family": "lightgbm",
+      "representation": "history",
+      "threshold": 0.08785209819630675,
+      "cost": 0.48427496555004085,
+      "fn": 2079,
+      "fp": 18922,
+      "approval_rate": 0.7138763215979903,
+      "approved_default_rate": 0.03551417833959686,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "auc": 0.7899269342503237,
+      "ap": 0.2784393214601884,
+      "brier": 0.0658533579081956,
+      "log_loss": 0.23667900876841502,
+      "n": 82003
+    },
+    {
+      "fold": 3,
+      "policy": "raw_lightgbm",
+      "family": "lightgbm",
+      "representation": "raw",
+      "threshold": 0.10203780967603082,
+      "cost": 0.5411631281782374,
+      "fn": 2813,
+      "fp": 16247,
+      "approval_rate": 0.7554479714156799,
+      "approved_default_rate": 0.04540831974688857,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "auc": 0.7514516703883127,
+      "ap": 0.24109474687820123,
+      "brier": 0.06801291688893889,
+      "log_loss": 0.24761812962359514,
+      "n": 82003
+    },
+    {
+      "fold": 3,
+      "policy": "application_lightgbm",
+      "family": "lightgbm",
+      "representation": "application",
+      "threshold": 0.08536998169072955,
+      "cost": 0.5288465056156482,
+      "fn": 2254,
+      "fp": 20827,
+      "approval_rate": 0.6927795324561297,
+      "approved_default_rate": 0.03967611336032389,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "auc": 0.7609593654927849,
+      "ap": 0.24717447725120442,
+      "brier": 0.06765595542085028,
+      "log_loss": 0.24531025056381003,
+      "n": 82003
+    },
+    {
+      "fold": 3,
+      "policy": "history_lightgbm",
+      "family": "lightgbm",
+      "representation": "history",
+      "threshold": 0.08844925910487796,
+      "cost": 0.4939087594356304,
+      "fn": 2272,
+      "fp": 17782,
+      "approval_rate": 0.7301318244454471,
+      "approved_default_rate": 0.03794698779082391,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "auc": 0.784003232956632,
+      "ap": 0.2740780059251243,
+      "brier": 0.06620430602797044,
+      "log_loss": 0.23828740832601839,
+      "n": 82003
+    },
+    {
+      "fold": 3,
+      "policy": "selected",
+      "family": "lightgbm",
+      "representation": "history",
+      "threshold": 0.08844925910487796,
+      "cost": 0.4939087594356304,
+      "fn": 2272,
+      "fp": 17782,
+      "approval_rate": 0.7301318244454471,
+      "approved_default_rate": 0.03794698779082391,
+      "approve_all_cost": 0.8072875382607954,
+      "reject_all_cost": 0.9192712461739204,
+      "auc": 0.784003232956632,
+      "ap": 0.2740780059251243,
+      "brier": 0.06620430602797044,
+      "log_loss": 0.23828740832601839,
+      "n": 82003
+    }
+  ],
+  "development_ablation": [
+    {
+      "fold": 1,
+      "application_minus_raw": 0.006781189456957604,
+      "history_minus_application": 0.023405933919004585,
+      "history_minus_raw": 0.030187123375962188
+    },
+    {
+      "fold": 2,
+      "application_minus_raw": 0.005578647657623281,
+      "history_minus_application": 0.024855424101525858,
+      "history_minus_raw": 0.03043407175914914
+    },
+    {
+      "fold": 3,
+      "application_minus_raw": 0.009507695104472136,
+      "history_minus_application": 0.023043867463847123,
+      "history_minus_raw": 0.03255156256831926
+    }
+  ],
+  "bootstrap": {
+    "method": "paired stratified percentile bootstrap",
+    "replicates": 1000,
+    "seed": 20261117,
+    "confidence_level": 0.95,
+    "rows": 61502,
+    "positive_rows": 4965,
+    "interpretation": "Conditional on fixed fitted models and class counts; IID applications assumed; no drift/retraining coverage",
+    "input_sha256": "5a6f76ff7b0e196ae9ca363905dff91daf052eec93013b7fdd4ed78ab50ba59b",
+    "analysis_code_sha256": "8a667ca35063b8dde676e62d6d055067c6d0ddc118ab27b43e53d18248a079cc"
+  },
+  "provenance": {
+    "training_source_sha256": {
+      "credit_scoring/__init__.py": "a04fa34426bae0a0109253c54a88390e0548a5f9b0969e80fb1d6e85e7086ce9",
+      "credit_scoring/application_development.py": "67ba7b7ab3cdbdc0e7574de42bdd15a5beb841d788789b2f8d6ed00fc5182b42",
+      "credit_scoring/demo.py": "deb9e15a94dc95b23c41fee63c45cb65cf7b85bf9be1d6d54dc8c481adc90ae5",
+      "credit_scoring/evaluation.py": "75d01b293fc3532ee283f8071f017e966623b2fcc6ec6128a3690ea130267b70",
+      "credit_scoring/features.py": "2998e76cd32649ddd9f26b3795536eb19546c3cbd153f773c6283457dcdb9773",
+      "credit_scoring/independent.py": "c5e72a330277262a8de50a855d436895a706f5a6f64777a2bc12c7581e8efc14",
+      "credit_scoring/installments.py": "4a7eeb73e3833ea76dce65dfd398902c4a14f719e72e46db9cf38c78439c3697",
+      "credit_scoring/protocol.py": "1e08a8889fc97d2ee357aa44caaf2d62b3c9dfb617d11f56d69a8a7d426ae201",
+      "credit_scoring/run.py": "8a52728dc572ca715193a775816634dec83d9f2a0e389f6f5a277678b190f24b",
+      "requirements-optional.txt": "7f06496f1f36d535334419cd47b59abb73df45be174f7e2e6972a364ddecd7de",
+      "requirements-tested-macos-arm64.txt": "9e649ada799b82167889fdb07518cd0020a8de766e37fecaf82a49086757620c",
+      "requirements.txt": "235c0910812a8f9564a47b02c3699bf5c66ee9be5a4390c35e1eae733415c1b5"
+    },
+    "model_sha256": "87473c4d2e4e771b37ea8b40e69a94e409b97840f9c8383e17e820eb8728ae5c",
+    "local_report_sha256": "cb9cb95a42e223a30144277331b7ab73950fc81536952d70fab35c2c41bd5423",
+    "note": "Training snapshot predates a CLI help wording fix. Fitting code is unchanged; hashes identify the recorded training version."
+  },
+  "limitations": [
+    "No absolute application timestamps: forward-time performance is untested.",
+    "Distinct application IDs cannot exclude hidden repeat borrowers.",
+    "Bootstrap conditions on fixed fitted models and class counts; it excludes retraining uncertainty and drift.",
+    "TARGET denotes competition payment difficulties, not necessarily legal default.",
+    "Cost 10:1 is a hypothetical scenario, not measured monetary loss.",
+    "Holdout is now observed; future changes need fresh independent confirmation.",
+    "XGBoost and CatBoost had synthetic tests only, not this full real-data benchmark."
+  ]
+}
